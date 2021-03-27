@@ -22,6 +22,7 @@ public class GMapActivity extends FragmentActivity implements OnMapReadyCallback
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
 
@@ -29,8 +30,8 @@ public class GMapActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        LatLng leninssqueare = new LatLng(51.661278, 39.200217);
-        map.addMarker(new MarkerOptions().position(leninssqueare).title("Lenin Square"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(leninssqueare));
+        LatLng leninssquare = new LatLng(51.661278, 39.200217);
+        map.addMarker(new MarkerOptions().position(leninssquare).title("Lenin Square"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(leninssquare));
     }
 }
