@@ -11,7 +11,5 @@ public class World {
     public int getMoney(){
         return this.money;
     }
-    public void addmoney(){
-        this.money += 5;
-    }
+    public void addmoney(){ this.money += 1; }
 }
