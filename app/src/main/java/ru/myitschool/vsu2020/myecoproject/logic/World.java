@@ -1,15 +1,18 @@
 package ru.myitschool.vsu2020.myecoproject.logic;
 
-import android.content.Context;
-
 public class World {
-    private int money = 0;
-    Context context;
-    public World(Context context){
-        this.context = context;
+    private int money;
+
+    public void setMoney(int money){
+        this.money = money;
     }
     public int getMoney(){
         return this.money;
     }
-    public void addmoney(){ this.money += 1; }
+    public void addmoney(){
+        this.money += 1;
+    }
+    public void spendmoney(int price){
+        this.money-=price;
+    }
 }

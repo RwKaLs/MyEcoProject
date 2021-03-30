@@ -30,8 +30,8 @@ public class GMapActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        LatLng leninssquare = new LatLng(51.661278, 39.200217);
-        map.addMarker(new MarkerOptions().position(leninssquare).title("Lenin Square"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(leninssquare));
+        LatLng gallery = new LatLng(51.666287085217945, 39.19173002238678);
+        map.addMarker(new MarkerOptions().position(gallery).title("Галерея Чижова (10:00 - 22:00)"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(gallery));
     }
 }
