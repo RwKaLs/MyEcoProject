@@ -12,7 +12,4 @@ public class World {
     public void addmoney(){
         this.money += 1;
     }
-    public void spendmoney(int price){
-        this.money-=price;
-    }
 }

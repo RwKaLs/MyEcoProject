@@ -16,33 +16,36 @@ public class GameActivity extends AppCompatActivity {
     ClickerSurface clickerSurface;
     CatcherSurface catcherSurface;
     SharedPreferences sharedPreferences;
-    World w;
+    public World w = new World();
+    public WorldProvider wp;
     final String SAVED_NUM = "COINS";
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         /*GETTING SCREEN SIZE
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;*/
-        w = new World();
+        wp = () -> w;
+        clickerSurface = new ClickerSurface(this, wp);
+
         loadData();
-        clickerSurface = new ClickerSurface(this);
         setContentView(clickerSurface);
-        View.OnClickListener onclck = v -> clickerSurface.onScreen();
+        View.OnClickListener onclck = v -> clickerSurface.onScreen(); w.addmoney();
         clickerSurface.setOnClickListener(onclck);
     }
     public void loadData(){
         sharedPreferences = getPreferences(MODE_PRIVATE);
         w.setMoney(sharedPreferences.getInt(SAVED_NUM, 0));
+        Toast.makeText(this, "LOADED", Toast.LENGTH_LONG).show();
     }
     public void saveData(){
         sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(SAVED_NUM, w.getMoney());
+        editor.putInt(SAVED_NUM, wp.getWorld().getMoney());
         editor.apply();
         editor.commit();
         Toast.makeText(this,"SAVED", Toast.LENGTH_LONG).show();
