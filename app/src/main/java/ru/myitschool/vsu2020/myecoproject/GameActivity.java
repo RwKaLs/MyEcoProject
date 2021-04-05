@@ -18,6 +18,7 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     public World w = new World();
     public WorldProvider wp;
+    public SavingClicker sc;
     final String SAVED_NUM = "COINS";
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
@@ -30,11 +31,11 @@ public class GameActivity extends AppCompatActivity {
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;*/
         wp = () -> w;
-        clickerSurface = new ClickerSurface(this, wp);
-
+        sc = this::saveData;
+        clickerSurface = new ClickerSurface(this, wp, sc);
         loadData();
         setContentView(clickerSurface);
-        View.OnClickListener onclck = v -> clickerSurface.onScreen(); w.addmoney();
+        View.OnClickListener onclck = v -> clickerSurface.onScreen();
         clickerSurface.setOnClickListener(onclck);
     }
     public void loadData(){

@@ -12,7 +12,9 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import ru.myitschool.vsu2020.myecoproject.GameActivity;
 import ru.myitschool.vsu2020.myecoproject.R;
+import ru.myitschool.vsu2020.myecoproject.SavingClicker;
 import ru.myitschool.vsu2020.myecoproject.WorldProvider;
 
 @SuppressLint("ViewConstructor")
@@ -24,11 +26,13 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
     public int height, width, yHigh, yLow, xHigh, xLow;
     public int currentX, currentY;
     public int step, yStep;
+    private final SavingClicker sc;
     /*public World w;*/
     public String scores;
-    public ClickerSurface(Context context, WorldProvider wp) {
+    public ClickerSurface(Context context, WorldProvider wp, SavingClicker sc) {
         super(context);
         this.wp = wp;
+        this.sc = sc;
         getHolder().addCallback(this);
     }
 
@@ -115,6 +119,7 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
             p.setStyle(Paint.Style.FILL);
         }
         public void requestStop(){
+            sc.save();
             running = false;
         }
 
