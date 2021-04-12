@@ -7,12 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import ru.myitschool.vsu2020.myecoproject.GameActivity;
 import ru.myitschool.vsu2020.myecoproject.R;
 import ru.myitschool.vsu2020.myecoproject.SavingClicker;
 import ru.myitschool.vsu2020.myecoproject.WorldProvider;
@@ -21,18 +21,20 @@ import ru.myitschool.vsu2020.myecoproject.WorldProvider;
 public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     private final WorldProvider wp;
-    private ClickerThread clickerThread;
+    public ClickerThread clickerThread;
     public  Bitmap currentBitmap, cleaner1, cleaner2, cleaner1z, cleaner2z, trash;
     public int height, width, yHigh, yLow, xHigh, xLow;
     public int currentX, currentY;
     public int step, yStep;
+    public int k, level;
     private final SavingClicker sc;
-    /*public World w;*/
-    public String scores;
-    public ClickerSurface(Context context, WorldProvider wp, SavingClicker sc) {
+    public String scores, slevel;
+    public ClickerSurface(Context context, WorldProvider wp, SavingClicker sc, int height, int width) {
         super(context);
         this.wp = wp;
         this.sc = sc;
+        this.height = height;
+        this.width = width;
         getHolder().addCallback(this);
     }
 
@@ -48,8 +50,8 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
         currentBitmap = cleaner1;
         currentX = 50;
         currentY = 70;
-        this.height = getHeight() - 350;
-        this.width = getWidth() - 350;
+        k = wp.getWorld().getK();
+        level = wp.getWorld().getLevel();
         xHigh = width-20;
         xLow = 20;
         yHigh = height;
@@ -57,12 +59,30 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
         step = 20;
         yStep = 100;
         clickerThread.start();
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> autoclick = new AsyncTask() {
+            @SuppressLint("StaticFieldLeak")
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                while (clickerThread.running) {
+                    onScreen();
+                    try {
+                        Thread.sleep(500 - wp.getWorld().getLevel()*5);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        };
+        autoclick.execute();
     }
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-        this.width = getWidth();
-        this.height = getHeight();
+        this.width = width;
+        this.height = height;
+        xHigh = width-20;
+        yHigh = height;
     }
 
     @Override
@@ -79,8 +99,11 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
             }
         }
     }
+
     public void onScreen(){
-        wp.getWorld().addmoney();
+        wp.getWorld().addMoney();
+        xHigh = width - currentBitmap.getWidth();
+        yHigh = height - currentBitmap.getHeight();
         if (currentX+21 > xHigh){
             currentBitmap = cleaner1z;
             step *= -1;
@@ -91,9 +114,9 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
             currentY += yStep;
         }
         if (currentY+46 > yHigh){
-            yStep *= -1;
+            yStep = -100;
         } else if(currentY-46 < yLow){
-            yStep *= -1;
+            yStep = 100;
         }
         if (currentBitmap == cleaner1){
             currentBitmap = cleaner2;
@@ -114,10 +137,11 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
 
         public ClickerThread(SurfaceHolder surfaceHolder){
             this.surfaceHolder = surfaceHolder;
-            p.setColor(Color.GREEN);
+            p.setColor(Color.YELLOW);
             p.setTextSize(50);
             p.setStyle(Paint.Style.FILL);
         }
+
         public void requestStop(){
             sc.save();
             running = false;
@@ -126,16 +150,14 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
         @Override
         public void run() {
             while (running){
-                /*if (w.getMoney() > k){
-                    Intent i = new Intent(getContext(), CatcherSurface.class);
-                    gameActivity.startActivity(i);
-                }*/
                 Canvas canvas = surfaceHolder.lockCanvas();
                 if (canvas != null){
                     try {
                         scores = "EcoCoins: "+ wp.getWorld().getMoney();
-                        canvas.drawColor(Color.LTGRAY);
+                        slevel = "Level: " + wp.getWorld().getLevel();
+                        canvas.drawColor(getContext().getResources().getColor(R.color.clicker_background));
                         canvas.drawText(scores, 50, 50, p);
+                        canvas.drawText(slevel, 50, 100, p);
                         canvas.drawBitmap(currentBitmap, (float) currentX, (float) currentY, p);
                     } finally {
                         surfaceHolder.unlockCanvasAndPost(canvas);

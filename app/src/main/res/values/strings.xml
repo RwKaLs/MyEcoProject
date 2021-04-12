@@ -3,4 +3,7 @@
     <string name="todo">TODO</string>
     <string name="fabric">fabric</string>
     <string name="score">Ваши монетки : </string>
+    <string name="change_upd">Хотите потратить монеты и повысить уровень?</string>
+    <string name="yes">ДА!</string>
+    <string name="no">НЕТ!</string>
 </resources>

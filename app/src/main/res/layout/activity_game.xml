@@ -6,17 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameActivity"
-    android:background="@color/clicker_background"
     android:id="@+id/clicker_layout">
-    <ImageView
-        android:id="@+id/fabric_img"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="120sp"
-        android:src="@drawable/fabric"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent"
+        android:id="@+id/game_area"/>
+    <Button
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:id="@+id/btnClickerUpd"
+        android:text="UPD"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/fabric"/>
-
-
+        android:layout_margin="10sp"/>
+    <Button
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:id="@+id/btnGameCountry"
+        android:text="Co"
+        app:layout_constraintTop_toBottomOf="@+id/btnClickerUpd"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
