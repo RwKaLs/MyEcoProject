@@ -22,19 +22,17 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
 
     private final WorldProvider wp;
     public ClickerThread clickerThread;
-    public  Bitmap currentBitmap, cleaner1, cleaner2, cleaner1z, cleaner2z, trash;
+    public  Bitmap currentBitmap, cleaner1, cleaner2, cleaner1z, cleaner2z;
     public int height, width, yHigh, yLow, xHigh, xLow;
     public int currentX, currentY;
     public int step, yStep;
     public int k, level;
     private final SavingClicker sc;
     public String scores, slevel;
-    public ClickerSurface(Context context, WorldProvider wp, SavingClicker sc, int height, int width) {
+    public ClickerSurface(Context context, WorldProvider wp, SavingClicker sc) {
         super(context);
         this.wp = wp;
         this.sc = sc;
-        this.height = height;
-        this.width = width;
         getHolder().addCallback(this);
     }
 
@@ -46,7 +44,6 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
         cleaner2 = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner2);
         cleaner1z = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner1z);
         cleaner2z = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner2z);
-        trash = BitmapFactory.decodeResource(getResources(), R.drawable.trash);
         currentBitmap = cleaner1;
         currentX = 50;
         currentY = 70;
@@ -87,17 +84,7 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-
         clickerThread.requestStop();
-        boolean retry = true;
-        while (retry) {
-            try {
-                clickerThread.join();
-                retry = false;
-            } catch (InterruptedException e) {
-                //
-            }
-        }
     }
 
     public void onScreen(){

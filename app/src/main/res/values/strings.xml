@@ -6,4 +6,15 @@
     <string name="change_upd">Хотите потратить монеты и повысить уровень?</string>
     <string name="yes">ДА!</string>
     <string name="no">НЕТ!</string>
+    <string name="back">Назад</string>
+    <string name="russia">Россия</string>
+    <string name="china">Китай</string>
+    <string name="france">Франция</string>
+    <string name="italy">Италия</string>
+    <string name="england">Англия</string>
+    <string name="usa">США</string>
+    <string name="canada">Канада</string>
+    <string name="brazil">Бразилия</string>
+    <string name="mexico">Мексика</string>
+    <string name="colombia">Колумбия</string>
 </resources>

@@ -11,4 +11,6 @@
     <color name="image_btn_Color">#E55B01</color>
     <color name="clicker_background">#00D67E</color>
     <color name="money_color">#FFEB3B</color>
+    <color name="choice_contry_background">#A26DC3</color>
+    <color name="catcher_background">#5CA2C3</color>
 </resources>

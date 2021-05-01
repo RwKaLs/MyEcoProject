@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:layout_height="match_parent"
-    tools:context=".changingscreens.ChoiceCountry">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/choice_contry_background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/show_coins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="27sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/money_color"
+        android:layout_margin="5sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/money_color"
+        android:layout_margin="5sp"
+        android:id="@+id/choice1"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/money_color"
+        android:layout_margin="5sp"
+        android:id="@+id/choice2"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/money_color"
+        android:layout_margin="5sp"
+        android:id="@+id/choice3"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/money_color"
+        android:layout_margin="5sp"
+        android:id="@+id/choice4"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/money_color"
+        android:layout_margin="5sp"
+        android:id="@+id/choice5"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="good morning"
+        android:layout_margin="5sp"
+        android:id="@+id/good"/>
+</LinearLayout>
