@@ -14,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyEcoProject"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".CatcherActivity" />
-        <activity android:name=".ChoiceCountry" />
+        <activity
+            android:name=".ChoiceCountry"
+            android:screenOrientation="portrait" />
         <activity android:name=".GameActivity" />
 
         <meta-data

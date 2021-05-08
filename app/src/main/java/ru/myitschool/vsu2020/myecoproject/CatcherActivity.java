@@ -3,6 +3,7 @@ package ru.myitschool.vsu2020.myecoproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,22 +14,39 @@ import ru.myitschool.vsu2020.myecoproject.drawing.CatcherSurface;
 public class CatcherActivity extends AppCompatActivity implements View.OnTouchListener {
 
     CatcherSurface catcherSurface;
+    SavingCatcher sc;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catcher);
-        catcherSurface = new CatcherSurface(this, getIntent().getDoubleExtra("YSPEED", 10.0));
-        ((FrameLayout)findViewById(R.id.catcher_area)).addView(catcherSurface);
+        sc = this::setRes;
+        catcherSurface = new CatcherSurface(this, getIntent().getDoubleExtra("YSPEED", 10.0), sc);
         catcherSurface.setOnTouchListener(this);
+        ((FrameLayout)findViewById(R.id.catcher_area)).addView(catcherSurface);
+        //catcherSurface.setOnTouchListener(this);
+    }
+
+    public void setRes(int result){
+        Intent i = new Intent();
+        i.putExtra("RESULT", result);
+        setResult(RESULT_OK, i);
+        finish();
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         v.performClick();
         int x = (int) event.getX();
-        catcherSurface.setXtrashcan(Math.min(x-catcherSurface.trashcan.getWidth()/2, (catcherSurface.width - catcherSurface.trashcan.getWidth())));
+        if(x < catcherSurface.trashcan.getWidth()/2){
+            catcherSurface.setXtrashcan(0);
+        } else if (x > catcherSurface.width - catcherSurface.trashcan.getWidth()/2){
+            catcherSurface.setXtrashcan(catcherSurface.width - catcherSurface.trashcan.getWidth());
+        } else {
+            catcherSurface.setXtrashcan(x-catcherSurface.trashcan.getWidth()/2);
+        }
+        //catcherSurface.setXtrashcan(Math.min(x-catcherSurface.trashcan.getWidth()/2, (catcherSurface.width - catcherSurface.trashcan.getWidth())));
         return true;
     }
 }

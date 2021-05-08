@@ -107,6 +107,7 @@ public class ChoiceCountry extends AppCompatActivity {
                     break;
                 case R.id.good:
                     Intent i = new Intent(ChoiceCountry.this, CatcherActivity.class);
+                    i.putExtra("YSPEED", 15.0);
                     startActivity(i);
                     break;
             }
@@ -121,6 +122,13 @@ public class ChoiceCountry extends AppCompatActivity {
 
     public void lowMoney(){
         Toast.makeText(this, "Недостаточно EcoCoins!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(ChoiceCountry.this, GameActivity.class);
+        startActivity(i);
     }
 
     @Override

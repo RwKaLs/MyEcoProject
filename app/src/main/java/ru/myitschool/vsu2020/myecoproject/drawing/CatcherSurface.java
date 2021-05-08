@@ -13,6 +13,7 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import ru.myitschool.vsu2020.myecoproject.R;
+import ru.myitschool.vsu2020.myecoproject.SavingCatcher;
 
 @SuppressLint("ViewConstructor")
 public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callback {
@@ -24,13 +25,18 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
     public int trashCount;
     public double xSpeed, ySpeed, departure, destination;
     public double currentX, currentY;
-    public int points;
+    public int points, mistakes;
+    public int result;
+    public SavingCatcher sc;
 
-    public CatcherSurface(Context context, double ySpeed) {
+    public CatcherSurface(Context context, double ySpeed, SavingCatcher sc) {
         super(context);
         getHolder().addCallback(this);
         this.ySpeed = ySpeed;
+        this.sc = sc;
+        result = 0;
         points = 0;
+        mistakes = 0;
     }
 
     @Override
@@ -40,7 +46,7 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
         trashcan = BitmapFactory.decodeResource(getResources(), R.drawable.trashcan);
         trash = BitmapFactory.decodeResource(getResources(), R.drawable.trash_small);
         trashCount = 10; //должно меняться
-        currentY = 50.0;
+        currentY = 0.0;
         xtrashcan = width/2;
     }
 
@@ -48,8 +54,8 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
         this.width = width;
         this.height = height;
-        departure = (Math.random() * (width-100) + 50);
-        destination = (Math.random() * (width-100) + 50);
+        departure = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
+        destination = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
         currentX = departure;
         xSpeed = ySpeed*(destination-departure)/(height-30);
         ytrashcan = height-trashcan.getHeight()-25;
@@ -83,7 +89,7 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
             p.setTextSize(50);
         }
 
-        public void requestStop(){running = false; }
+        public void requestStop(){running = false; sc.saveres(result);}
 
         @Override
         public void run() {
@@ -93,20 +99,40 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
                     try {
                         canvas.drawColor(getContext().getResources().getColor(R.color.catcher_background));
                         canvas.drawBitmap(trashcan, (float)xtrashcan, (float)ytrashcan, p);
-                        if ((double)currentY >= (double) (height-trashcan.getHeight()-24 + ySpeed)) {
-                            if (currentX <= (double)(xtrashcan + trashcan.getWidth()/2) && currentX >= (double)(xtrashcan - trashcan.getWidth()/2)) {
+                        if(points == 10){
+                            result = 1;
+                            requestStop();
+                        }
+                        if (currentY >= (height-trashcan.getHeight() + ySpeed)) {
+                            if (currentY <= (height + ySpeed) && currentX <= (double)(xtrashcan + trashcan.getWidth()/2) && currentX >= (double)(xtrashcan - trashcan.getWidth()/2)) {
                                 points++;
+                                p.setColor(Color.GREEN);
+                                canvas.drawText("Good", 100, 100, p);
+                                p.setColor(Color.RED);
                                 currentY = 0;
-                                departure = (Math.random() * (width-100)+50);
-                                destination = (Math.random() * (width-100)+50);
+                                departure = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
+                                destination = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
                                 currentX = departure;
                                 xSpeed = ySpeed*(destination-departure)/(height-30);
                             } else {
-                                canvas.drawText("looser", 100, 100, p);
+                                mistakes++;
+                                if (mistakes >= 3) {
+                                    canvas.drawText("Looser", 100, 100, p);
+                                    result = 0;
+                                    requestStop();
+                                } else{
+                                    canvas.drawColor(Color.RED);
+                                    currentY = 0;
+                                    departure = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
+                                    destination = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
+                                    currentX = departure;
+                                    xSpeed = ySpeed*(destination-departure)/(height-30);
+                                }
                             }
                         }else{
                             canvas.drawBitmap(trash, (float) currentX, (float) currentY, p);
                         }
+                        canvas.drawText(String.valueOf(mistakes), 100, 50, p);
                         canvas.drawText(String.valueOf(points), 50, 50, p);
                         currentX += xSpeed;
                         currentY += ySpeed;

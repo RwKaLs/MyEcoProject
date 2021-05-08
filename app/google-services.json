@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "696413798031",
+    "firebase_url": "https://myecoproject-85cc4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "myecoproject-85cc4",
+    "storage_bucket": "myecoproject-85cc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696413798031:android:499665999c376a1e423afa",
+        "android_client_info": {
+          "package_name": "ru.myitschool.vsu2020.myecoproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696413798031-0o3kd0dtl1b08m6o82qh77vptcpatunr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM1gVtGNkAN42MMrVZe8gsnbpJc4Znts4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696413798031-0o3kd0dtl1b08m6o82qh77vptcpatunr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

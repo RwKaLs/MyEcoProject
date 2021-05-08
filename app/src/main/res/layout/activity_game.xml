@@ -29,4 +29,17 @@
         app:layout_constraintTop_toBottomOf="@+id/btnClickerUpd"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="10sp"/>
+
+    <TextView
+        android:id="@+id/textArrayshow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/image_btn_Color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/game_area" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
