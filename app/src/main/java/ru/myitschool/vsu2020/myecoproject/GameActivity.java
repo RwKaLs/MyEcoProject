@@ -20,7 +20,7 @@ import ru.myitschool.vsu2020.myecoproject.logic.World;
 
 public class GameActivity extends AppCompatActivity {
     ClickerSurface clickerSurface;
-    SharedPreferences sharedPreferences;
+SharedPreferences sharedPreferences;
     public World w = new World();
     public WorldProvider wp = () -> w;
     public SavingClicker sc;
@@ -49,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
                         wp.getWorld().getCountryCount(CHINA), wp.getWorld().getCountryCount(FRANCE), wp.getWorld().getCountryCount(ITALY),
                         wp.getWorld().getCountryCount(ENGLAND), wp.getWorld().getCountryCount(USA), wp.getWorld().getCountryCount(CANADA),
                         wp.getWorld().getCountryCount(BRAZIL), wp.getWorld().getCountryCount(MEXICO), wp.getWorld().getCountryCount(COLOMBIA)};
+                iprof.putExtra("LEVEL_TO_PROF", wp.getWorld().getLevel());
                 iprof.putExtra("COUNTRIESARRAY", countries);
                 setResult(RESULT_OK, iprof);
                 finish();

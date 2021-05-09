@@ -1,8 +1,5 @@
 package ru.myitschool.vsu2020.myecoproject.logic;
 
-import java.util.HashMap;
-
-
 public class World {
 
     private int money;

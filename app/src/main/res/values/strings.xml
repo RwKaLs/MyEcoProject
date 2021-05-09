@@ -17,4 +17,7 @@
     <string name="brazil">Бразилия</string>
     <string name="mexico">Мексика</string>
     <string name="colombia">Колумбия</string>
+    <string name="hintProfName">Введите никнейм</string>
+    <string name="btnSetName">Изменить никнейм</string>
+    <string name="todo">TODO</string>
 </resources>
