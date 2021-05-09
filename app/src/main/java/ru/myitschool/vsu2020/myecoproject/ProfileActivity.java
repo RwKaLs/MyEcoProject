@@ -1,11 +1,12 @@
 package ru.myitschool.vsu2020.myecoproject;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 
@@ -14,6 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int GET_COUNTRIES = 1;
     public int[] countries;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

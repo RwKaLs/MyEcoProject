@@ -13,4 +13,6 @@
     <color name="money_color">#FFEB3B</color>
     <color name="choice_contry_background">#A26DC3</color>
     <color name="catcher_background">#5CA2C3</color>
+    <color name="top_of_profileactivity">#FFA849</color>
+    <color name="bottom_of_profileactivity">#98FF73</color>
 </resources>

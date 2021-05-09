@@ -15,6 +15,7 @@ public class CatcherActivity extends AppCompatActivity implements View.OnTouchLi
 
     CatcherSurface catcherSurface;
     SavingCatcher sc;
+    private int costRes;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -22,6 +23,7 @@ public class CatcherActivity extends AppCompatActivity implements View.OnTouchLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catcher);
         sc = this::setRes;
+        costRes = getIntent().getIntExtra("COSTRES", 0);
         catcherSurface = new CatcherSurface(this, getIntent().getDoubleExtra("YSPEED", 10.0), sc);
         catcherSurface.setOnTouchListener(this);
         ((FrameLayout)findViewById(R.id.catcher_area)).addView(catcherSurface);
@@ -33,6 +35,15 @@ public class CatcherActivity extends AppCompatActivity implements View.OnTouchLi
         i.putExtra("RESULT", result);
         setResult(RESULT_OK, i);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent iback = new Intent(CatcherActivity.this, GameActivity.class);
+        iback.putExtra("BACKBTN", 1492);
+        iback.putExtra("COSTRESULT", costRes);
+        startActivity(iback);
     }
 
     @Override

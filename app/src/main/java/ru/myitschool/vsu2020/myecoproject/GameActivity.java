@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -53,6 +52,9 @@ public class GameActivity extends AppCompatActivity {
                 iprof.putExtra("COUNTRIESARRAY", countries);
                 setResult(RESULT_OK, iprof);
                 finish();
+            } else if (getIntent().getIntExtra("BACKBTN", 0) == 1492){
+                int costRes = getIntent().getIntExtra("COSTRESULT", 0);
+                w.setMoney(w.getMoney() + costRes);
             }
         }
         clickerSurface = new ClickerSurface(this, wp, sc);
@@ -102,54 +104,63 @@ public class GameActivity extends AppCompatActivity {
                         case "Россия":
                             Intent iru = new Intent(GameActivity.this, CatcherActivity.class);
                             iru.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            iru.putExtra("COSTRES", cost);
                             startActivityForResult(iru, COUNTRY_RU);
                             Toast.makeText(this, "ru", Toast.LENGTH_LONG).show();
                             break;
                         case "Китай":
                             Intent ichi = new Intent(GameActivity.this, CatcherActivity.class);
                             ichi.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ichi.putExtra("COSTRES", cost);
                             startActivityForResult(ichi, COUNTRY_CHI);
                             Toast.makeText(this, "chi", Toast.LENGTH_LONG).show();
                             break;
                         case "Франция":
                             Intent ifra = new Intent(GameActivity.this, CatcherActivity.class);
                             ifra.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ifra.putExtra("COSTRES", cost);
                             startActivityForResult(ifra, COUNTRY_FRA);
                             Toast.makeText(this, "fra", Toast.LENGTH_LONG).show();
                             break;
                         case "Италия":
                             Intent iita = new Intent(GameActivity.this, CatcherActivity.class);
                             iita.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            iita.putExtra("COSTRES", cost);
                             startActivityForResult(iita, COUNTRY_ITA);
                             Toast.makeText(this, "ita", Toast.LENGTH_LONG).show();
                             break;
                         case "Англия":
                             Intent ieng = new Intent(GameActivity.this, CatcherActivity.class);
                             ieng.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ieng.putExtra("COSTRES", cost);
                             startActivityForResult(ieng, COUNTRY_ENG);
                             Toast.makeText(this, "eng", Toast.LENGTH_LONG).show();
                             break;
                         case "США":
                             Intent ius = new Intent(GameActivity.this, CatcherActivity.class);
                             ius.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ius.putExtra("COSTRES", cost);
                             startActivityForResult(ius, COUNTRY_US);
                             Toast.makeText(this, "us", Toast.LENGTH_LONG).show();
                             break;
                         case "Канада":
                             Intent ica = new Intent(GameActivity.this, CatcherActivity.class);
                             ica.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ica.putExtra("COSTRES", cost);
                             startActivityForResult(ica, COUNTRY_CA);
                             Toast.makeText(this, "ca", Toast.LENGTH_LONG).show();
                             break;
                         case "Бразилия":
                             Intent ibra = new Intent(GameActivity.this, CatcherActivity.class);
                             ibra.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            ibra.putExtra("COSTRES", cost);
                             startActivityForResult(ibra, COUNTRY_BRA);
                             Toast.makeText(this, "bra", Toast.LENGTH_LONG).show();
                             break;
                         case "Мексика":
                             Intent imex = new Intent(GameActivity.this, CatcherActivity.class);
                             imex.putExtra("YSPEED", (double)wp.getWorld().getySpeed());
+                            imex.putExtra("COSTRES", cost);
                             startActivityForResult(imex, COUNTRY_MEX);
                             Toast.makeText(this, "mex", Toast.LENGTH_LONG).show();
                             break;
@@ -298,3 +309,4 @@ public class GameActivity extends AppCompatActivity {
         Toast.makeText(this, "Недостаточно EcoCoins!", Toast.LENGTH_SHORT).show();
     }
 }
+//999920500
