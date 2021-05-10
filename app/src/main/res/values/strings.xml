@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">My Eco Project</string>
     <string name="todo">TODO</string>
     <string name="fabric">fabric</string>
@@ -19,5 +19,6 @@
     <string name="colombia">Колумбия</string>
     <string name="hintProfName">Введите никнейм</string>
     <string name="btnSetName">Изменить никнейм</string>
-    <string name="todo">TODO</string>
+    <string name="east">Восток</string>
+    <string name="west">Запад</string>
 </resources>

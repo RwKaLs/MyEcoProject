@@ -13,34 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/game_area"/>
-    <Button
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:id="@+id/btnClickerUpd"
-        android:text="UPD"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnClickerUpd"
+        android:textColor="@color/money_color"
         app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/show_next_coins"/>
+    <ImageButton
+        android:layout_width="55sp"
+        android:layout_height="55sp"
+        android:id="@+id/btnClickerUpd"
+        android:src="@drawable/update_btn"
+        android:scaleType="centerCrop"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_next_coins"
         android:layout_margin="10sp"/>
-    <Button
-        android:layout_width="50sp"
-        android:layout_height="50sp"
+    <ImageButton
+        android:layout_width="55sp"
+        android:layout_height="55sp"
         android:id="@+id/btnGameCountry"
-        android:text="Co"
+        android:src="@drawable/country_btn"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@+id/btnClickerUpd"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="10sp"/>
-
-    <TextView
-        android:id="@+id/textArrayshow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text="show Array"
-        android:textColor="@color/image_btn_Color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/game_area" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

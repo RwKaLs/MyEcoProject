@@ -5,26 +5,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
-
 import ru.myitschool.vsu2020.myecoproject.drawing.ClickerSurface;
 import ru.myitschool.vsu2020.myecoproject.logic.World;
 
 public class GameActivity extends AppCompatActivity {
     ClickerSurface clickerSurface;
-SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences;
     public World w = new World();
     public WorldProvider wp = () -> w;
     public SavingClicker sc;
-    public Button upd, country;
+    public TextView tv_nextK;
+    public ImageButton upd, country;
     final String SAVED_COINS = "COINS", SAVED_K = "K", SAVED_LEVEL = "LEVEL", SAVED_CEFF = "CEFF", SAVED_YSPEED = "YSPEED";
     final String SAVED_RUSSIA = "RUSSIA", SAVED_CHINA = "CHINA", SAVED_FRANCE = "FRANCE", SAVED_ITALY = "ITALY", SAVED_ENGLAND = "ENGLAND",
                  SAVED_USA = "USA", SAVED_CANADA = "CANADA", SAVED_BRAZIL = "BRAZIL", SAVED_MEXICO = "MEXICO", SAVED_COLOMBIA = "COLOMBIA";
@@ -33,15 +32,17 @@ SharedPreferences sharedPreferences;
     private static final int COUNTRY_ACTIVITY = 1, COUNTRY_RU = 2, COUNTRY_CHI = 3, COUNTRY_FRA = 4, COUNTRY_ITA = 5, COUNTRY_ENG = 6,
             COUNTRY_US = 7, COUNTRY_CA = 8, COUNTRY_BRA = 9, COUNTRY_MEX = 10, COUNTRY_COL = 11;
 
-    @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
+    @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         upd = findViewById(R.id.btnClickerUpd);
         country = findViewById(R.id.btnGameCountry);
+        tv_nextK = findViewById(R.id.show_next_coins);
         sc = this::saveData;
         loadData();
+        tv_nextK.setText("Update: " + wp.getWorld().getK() + " EcoCoins");
         if (getIntent() != null){
             if (getIntent().getIntExtra("PROFILECOUNTRIES", 0) == 589){
                 Intent iprof = new Intent();
@@ -50,6 +51,7 @@ SharedPreferences sharedPreferences;
                         wp.getWorld().getCountryCount(ENGLAND), wp.getWorld().getCountryCount(USA), wp.getWorld().getCountryCount(CANADA),
                         wp.getWorld().getCountryCount(BRAZIL), wp.getWorld().getCountryCount(MEXICO), wp.getWorld().getCountryCount(COLOMBIA)};
                 iprof.putExtra("LEVEL_TO_PROF", wp.getWorld().getLevel());
+                iprof.putExtra("COINS", wp.getWorld().getMoney());
                 iprof.putExtra("COUNTRIESARRAY", countries);
                 setResult(RESULT_OK, iprof);
                 finish();
@@ -59,10 +61,9 @@ SharedPreferences sharedPreferences;
             }
         }
         clickerSurface = new ClickerSurface(this, wp, sc);
-        TextView tv = findViewById(R.id.textArrayshow);
         //loadData();
         ((FrameLayout)findViewById(R.id.game_area)).addView(clickerSurface);
-        View.OnClickListener onclck = v -> {
+        @SuppressLint("SetTextI18n") View.OnClickListener onclck = v -> {
             if (clickerSurface.equals(v)) {
                 clickerSurface.onScreen();
             } else if (upd.equals(v)) {
@@ -71,6 +72,7 @@ SharedPreferences sharedPreferences;
                     wp.getWorld().addLevel();
                     wp.getWorld().addK();
                     wp.getWorld().addCeffMoney();
+                    tv_nextK.setText("Update: " + wp.getWorld().getK() + " EcoCoins");
                 } else{
                     lowMoney();
                 }
@@ -79,11 +81,8 @@ SharedPreferences sharedPreferences;
                 i.putExtra("Money", wp.getWorld().getMoney());
                 i.putExtra("K", wp.getWorld().getK());
                 startActivityForResult(i, COUNTRY_ACTIVITY);
-            } else if(tv.equals(v)){
-                tv.setText(Arrays.toString(wp.getWorld().getTokens()));
             }
         };
-        tv.setOnClickListener(onclck);
         clickerSurface.setOnClickListener(onclck);
         upd.setOnClickListener(onclck);
         country.setOnClickListener(onclck);

@@ -9,10 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_background_color">#E9FFCF</color>
     <color name="image_btn_Color">#E55B01</color>
-    <color name="clicker_background">#00D67E</color>
+    <color name="clicker_background">#7A936C</color>
     <color name="money_color">#FFEB3B</color>
     <color name="choice_contry_background">#A26DC3</color>
     <color name="catcher_background">#5CA2C3</color>
     <color name="top_of_profileactivity">#FFA849</color>
-    <color name="bottom_of_profileactivity">#98FF73</color>
+    <color name="bottom_of_profileactivity">#69A16A</color>
 </resources>

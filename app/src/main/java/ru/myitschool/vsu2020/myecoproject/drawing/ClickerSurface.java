@@ -124,7 +124,7 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
 
         public ClickerThread(SurfaceHolder surfaceHolder){
             this.surfaceHolder = surfaceHolder;
-            p.setColor(Color.YELLOW);
+            p.setColor(getResources().getColor(R.color.money_color));
             p.setTextSize(50);
             p.setStyle(Paint.Style.FILL);
         }

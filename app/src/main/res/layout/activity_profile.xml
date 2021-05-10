@@ -28,22 +28,25 @@
                 android:layout_marginTop="10sp"
                 android:hint="@string/hintProfName"
                 android:id="@+id/edNickName"/>
-            <Button
-                android:layout_width="165sp"
-                android:layout_height="wrap_content"
-                android:textSize="7sp"
-                android:text="@string/btnSetName"
-                android:id="@+id/setNick"
-                tools:ignore="SmallSp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3sp"
-            android:layout_marginTop="10sp"
-            android:id="@+id/tv_level_prof"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3sp"
+                android:id="@+id/tv_level_prof"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="3sp"
+            android:id="@+id/tv_coins_prof"/>
+        </LinearLayout>
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -61,23 +64,119 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btn_East"
                     android:background="@color/choice_contry_background"
+                    android:textColor="@color/black"
+                    android:text="@string/east"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
                     style="?android:attr/buttonBarButtonStyle" />
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btn_West"
                     android:background="@color/choice_contry_background"
+                    android:textColor="@color/black"
+                    android:text="@string/west"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
                     style="?android:attr/buttonBarButtonStyle" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/testtext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="3sp">
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:id="@+id/img_country1"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="50sp"
+                    android:textSize="21sp"
+                    android:id="@+id/tv_country1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="3sp">
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:id="@+id/img_country2"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="50sp"
+                    android:textSize="21sp"
+                    android:id="@+id/tv_country2"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="3sp">
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:id="@+id/img_country3"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="50sp"
+                    android:textSize="21sp"
+                    android:id="@+id/tv_country3"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="3sp">
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:id="@+id/img_country4"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="50sp"
+                    android:textSize="21sp"
+                    android:id="@+id/tv_country4"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="3sp">
+                <ImageView
+                    android:layout_width="150sp"
+                    android:layout_height="150sp"
+                    android:id="@+id/img_country5"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/todo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="50sp"
+                    android:textSize="21sp"
+                    android:id="@+id/tv_country5"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
