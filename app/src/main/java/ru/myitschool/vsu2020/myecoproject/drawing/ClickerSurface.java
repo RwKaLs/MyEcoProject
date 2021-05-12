@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.view.SurfaceHolder;
@@ -13,6 +12,9 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
+import ru.myitschool.vsu2020.myecoproject.Dirt;
 import ru.myitschool.vsu2020.myecoproject.R;
 import ru.myitschool.vsu2020.myecoproject.SavingClicker;
 import ru.myitschool.vsu2020.myecoproject.WorldProvider;
@@ -22,7 +24,7 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
 
     private final WorldProvider wp;
     public ClickerThread clickerThread;
-    public  Bitmap currentBitmap, cleaner1, cleaner2, cleaner1z, cleaner2z;
+    public  Bitmap currentBitmap, cleaner1, cleaner2, cleaner1z, cleaner2z, dirt;
     public int height, width, yHigh, yLow, xHigh, xLow;
     public int currentX, currentY;
     public int step, yStep;
@@ -44,6 +46,7 @@ public class ClickerSurface extends SurfaceView implements SurfaceHolder.Callbac
         cleaner2 = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner2);
         cleaner1z = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner1z);
         cleaner2z = BitmapFactory.decodeResource(getResources(), R.drawable.cleaner2z);
+        dirt = BitmapFactory.decodeResource(getResources(), R.drawable.dirt);
         currentBitmap = cleaner1;
         currentX = 50;
         currentY = 70;

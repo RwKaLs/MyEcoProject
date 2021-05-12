@@ -28,12 +28,14 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
     public int points, mistakes;
     public int result;
     public SavingCatcher sc;
+    public int countDown;
 
     public CatcherSurface(Context context, double ySpeed, SavingCatcher sc) {
         super(context);
         getHolder().addCallback(this);
         this.ySpeed = ySpeed;
         this.sc = sc;
+        countDown = 1500;
         result = 0;
         points = 0;
         mistakes = 0;
@@ -82,11 +84,14 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
 
         private volatile boolean running = true;
         public Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        public Paint pBig = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         public CatcherThread(SurfaceHolder surfaceHolder){
             this.surfaceHolder = surfaceHolder;
             p.setColor(Color.RED);
             p.setTextSize(50);
+            pBig.setColor(Color.RED);
+            pBig.setTextSize(150);
         }
 
         public void requestStop(){running = false; sc.saveres(result);}
@@ -97,45 +102,59 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
                 Canvas canvas = surfaceHolder.lockCanvas();
                 if (canvas != null){
                     try {
-                        canvas.drawColor(getContext().getResources().getColor(R.color.catcher_background));
-                        canvas.drawBitmap(trashcan, (float)xtrashcan, (float)ytrashcan, p);
-                        if(points == 10){
-                            result = 1;
-                            requestStop();
-                        }
-                        if (currentY >= (height-trashcan.getHeight() + ySpeed)) {
-                            if (currentY <= (height + ySpeed) && currentX <= (double)(xtrashcan + trashcan.getWidth()/2) && currentX >= (double)(xtrashcan - trashcan.getWidth()/2)) {
-                                points++;
-                                p.setColor(Color.GREEN);
-                                canvas.drawText("Good", 100, 100, p);
-                                p.setColor(Color.RED);
-                                currentY = 0;
-                                departure = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
-                                destination = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
-                                currentX = departure;
-                                xSpeed = ySpeed*(destination-departure)/(height-30);
-                            } else {
-                                mistakes++;
-                                if (mistakes >= 3) {
-                                    canvas.drawText("Looser", 100, 100, p);
-                                    result = 0;
-                                    requestStop();
-                                } else{
-                                    canvas.drawColor(Color.RED);
-                                    currentY = 0;
-                                    departure = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
-                                    destination = (Math.random() * (width-2*trash.getWidth()) + trash.getWidth());
-                                    currentX = departure;
-                                    xSpeed = ySpeed*(destination-departure)/(height-30);
-                                }
+                        if (countDown >= 1000) {
+                            canvas.drawColor(getResources().getColor(R.color.catcher_background));
+                            canvas.drawText("3", (float)width/2, (float)height/2, pBig);
+                            countDown-=5;
+                        } else if (countDown >= 500){
+                            canvas.drawColor(getResources().getColor(R.color.catcher_background));
+                            canvas.drawText("2", (float)width/2, (float)height/2, pBig);
+                            countDown-=5;
+                        } else if (countDown > 0){
+                            canvas.drawColor(getResources().getColor(R.color.catcher_background));
+                            canvas.drawText("1", (float)width/2, (float)height/2, pBig);
+                            countDown-=5;
+                        } else {
+                            canvas.drawColor(getContext().getResources().getColor(R.color.catcher_background));
+                            canvas.drawBitmap(trashcan, (float) xtrashcan, (float) ytrashcan, p);
+                            if (points == 10) {
+                                result = 1;
+                                requestStop();
                             }
-                        }else{
-                            canvas.drawBitmap(trash, (float) currentX, (float) currentY, p);
+                            if (currentY >= (height - trashcan.getHeight() + ySpeed)) {
+                                if (currentY <= (height + ySpeed) && currentX <= (double) (xtrashcan + trashcan.getWidth() / 2) && currentX >= (double) (xtrashcan - trashcan.getWidth() / 2)) {
+                                    points++;
+                                    p.setColor(Color.GREEN);
+                                    canvas.drawText("Good", 100, 100, p);
+                                    p.setColor(Color.RED);
+                                    currentY = 0;
+                                    departure = (Math.random() * (width - 2 * trash.getWidth()) + trash.getWidth());
+                                    destination = (Math.random() * (width - 2 * trash.getWidth()) + trash.getWidth());
+                                    currentX = departure;
+                                    xSpeed = ySpeed * (destination - departure) / (height - 30);
+                                } else {
+                                    mistakes++;
+                                    if (mistakes >= 3) {
+                                        canvas.drawText("Looser", 100, 100, p);
+                                        result = 0;
+                                        requestStop();
+                                    } else {
+                                        canvas.drawColor(Color.RED);
+                                        currentY = 0;
+                                        departure = (Math.random() * (width - 2 * trash.getWidth()) + trash.getWidth());
+                                        destination = (Math.random() * (width - 2 * trash.getWidth()) + trash.getWidth());
+                                        currentX = departure;
+                                        xSpeed = ySpeed * (destination - departure) / (height - 30);
+                                    }
+                                }
+                            } else {
+                                canvas.drawBitmap(trash, (float) currentX, (float) currentY, p);
+                            }
+                            canvas.drawText(String.valueOf(mistakes), 100, 50, p);
+                            canvas.drawText(String.valueOf(points), 50, 50, p);
+                            currentX += xSpeed;
+                            currentY += ySpeed;
                         }
-                        canvas.drawText(String.valueOf(mistakes), 100, 50, p);
-                        canvas.drawText(String.valueOf(points), 50, 50, p);
-                        currentX += xSpeed;
-                        currentY += ySpeed;
                     } finally {
                         surfaceHolder.unlockCanvasAndPost(canvas);
                     }

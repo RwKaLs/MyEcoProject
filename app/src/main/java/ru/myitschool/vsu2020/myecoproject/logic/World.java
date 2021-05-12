@@ -44,11 +44,6 @@ public class World {
         tokens[countryToArray(k)] = v;
     }
 
-    //test method
-    public int[] getTokens(){
-        return tokens;
-    }
-
 
     public int getCountryCount(String k){
         return tokens[countryToArray(k)];
@@ -96,11 +91,11 @@ public class World {
     }
 
     public void addCeffMoney() {
-        this.ceff_money += 2;
+        this.ceff_money += 3;
     }
 
     public void addK() {
-        this.k *= 2;
+        this.k = (((int)(this.k*1.5/500))*500);
     }
 
     public void addLevel() {
