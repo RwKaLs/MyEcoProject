@@ -128,17 +128,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (String.valueOf(edNickName.getText()).equals(userNick)){
-            saveProf();
-        } else if (!String.valueOf(edNickName.getText()).equals("")){
-            if (attempts < 1){
-                msgAttempts(2);
-            } else {
-                attempts--;
-                msgAttempts(1);
-                saveProf();
-            }
-        }
+        Intent iback = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(iback);
     }
 
     @Override
