@@ -8,8 +8,6 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.myitschool.vsu2020.myecoproject.database.CountriesDbManager;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

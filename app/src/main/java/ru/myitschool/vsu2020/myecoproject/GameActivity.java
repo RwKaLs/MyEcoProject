@@ -3,7 +3,6 @@ package ru.myitschool.vsu2020.myecoproject;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
