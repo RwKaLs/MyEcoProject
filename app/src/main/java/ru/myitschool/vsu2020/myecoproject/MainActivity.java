@@ -8,9 +8,9 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import ru.myitschool.vsu2020.myecoproject.database.CountriesDbManager;
 
-    private static final int SAVENICK = 1;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

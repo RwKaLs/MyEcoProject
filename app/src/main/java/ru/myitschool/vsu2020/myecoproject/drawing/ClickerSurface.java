@@ -12,9 +12,6 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-
-import ru.myitschool.vsu2020.myecoproject.Dirt;
 import ru.myitschool.vsu2020.myecoproject.R;
 import ru.myitschool.vsu2020.myecoproject.SavingClicker;
 import ru.myitschool.vsu2020.myecoproject.WorldProvider;

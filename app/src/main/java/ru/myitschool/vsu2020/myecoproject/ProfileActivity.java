@@ -15,15 +15,20 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import ru.myitschool.vsu2020.myecoproject.database.CountriesDbManager;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int GET_COUNTRIES = 1;
     public int[] countries;
+
     public EditText edNickName;
     public TextView tvLevel, tvCoins, tvCountry1, tvCountry2, tvCountry3, tvCountry4, tvCountry5;
     public ImageView imgCountry1, imgCountry2, imgCountry3, imgCountry4, imgCountry5;
     public Button westCountries, eastCountries;
+
     SharedPreferences sharedPrefProf;
+
     final String SAVED_NICKNAME = "SVNICKNAME", SAVED_ATTEMPTS = "SVATTEMPTS";
     private String userNick;
     private int attempts, level, coins;
