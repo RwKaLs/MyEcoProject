@@ -27,7 +27,6 @@ public class ChoiceCountry extends AppCompatActivity {
         Button choice3 = findViewById(R.id.choice3);
         Button choice4 = findViewById(R.id.choice4);
         Button choice5 = findViewById(R.id.choice5);
-        Button good = findViewById(R.id.good);
         Time currentTime = new Time();
         currentTime.setToNow();
         if (currentTime.hour > 7 && currentTime.hour < 16){
@@ -105,14 +104,8 @@ public class ChoiceCountry extends AppCompatActivity {
                         lowMoney();
                     }
                     break;
-                case R.id.good:
-                    Intent i = new Intent(ChoiceCountry.this, CatcherActivity.class);
-                    i.putExtra("YSPEED", 15.0);
-                    startActivity(i);
-                    break;
             }
         };
-        good.setOnClickListener(onclck);
         choice1.setOnClickListener(onclck);
         choice2.setOnClickListener(onclck);
         choice3.setOnClickListener(onclck);

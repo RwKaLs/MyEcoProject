@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.myitschool.vsu2020.myecoproject.database.CountriesDbManager;
-
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int GET_COUNTRIES = 1;
@@ -26,10 +24,14 @@ public class ProfileActivity extends AppCompatActivity {
     public TextView tvLevel, tvCoins, tvCountry1, tvCountry2, tvCountry3, tvCountry4, tvCountry5;
     public ImageView imgCountry1, imgCountry2, imgCountry3, imgCountry4, imgCountry5;
     public Button westCountries, eastCountries;
+    public String[] russ, chi, fra, ita, eng, usa, can, bra, mex, col;
 
     SharedPreferences sharedPrefProf;
 
     final String SAVED_NICKNAME = "SVNICKNAME", SAVED_ATTEMPTS = "SVATTEMPTS";
+    final String SAVED_RUSSIA = "RUSSIA", SAVED_CHINA = "CHINA", SAVED_FRANCE = "FRANCE", SAVED_ITALY = "ITALY",
+            SAVED_ENGLAND = "ENGLAND", SAVED_USA = "USA", SAVED_CANADA = "CANADA", SAVED_BRAZIL = "BRAZIL",
+            SAVED_MEXICO = "MEXICO", SAVED_COLOMBIA = "COLOMBIA";
     private String userNick;
     private int attempts, level, coins;
 
@@ -89,6 +91,16 @@ public class ProfileActivity extends AppCompatActivity {
         }
         level = data.getIntExtra("LEVEL_TO_PROF", 0);
         coins = data.getIntExtra("COINS", 0);
+        russ = data.getStringArrayExtra(SAVED_RUSSIA);
+        chi = data.getStringArrayExtra(SAVED_CHINA);
+        fra = data.getStringArrayExtra(SAVED_FRANCE);
+        ita = data.getStringArrayExtra(SAVED_ITALY);
+        eng = data.getStringArrayExtra(SAVED_ENGLAND);
+        usa = data.getStringArrayExtra(SAVED_USA);
+        can = data.getStringArrayExtra(SAVED_CANADA);
+        bra = data.getStringArrayExtra(SAVED_BRAZIL);
+        mex = data.getStringArrayExtra(SAVED_MEXICO);
+        col = data.getStringArrayExtra(SAVED_COLOMBIA);
         tvLevel = findViewById(R.id.tv_level_prof);
         tvCoins = findViewById(R.id.tv_coins_prof);
         edNickName = findViewById(R.id.edNickName);
@@ -101,7 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private String formatCountry(int count){
-        return "Жетоны страны: " + count;
+        return "Жетоны страны: " + "\n" + count;
     }
 
     private void showEast(){

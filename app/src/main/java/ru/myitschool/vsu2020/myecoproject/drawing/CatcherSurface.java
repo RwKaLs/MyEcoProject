@@ -150,8 +150,8 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
                             } else {
                                 canvas.drawBitmap(trash, (float) currentX, (float) currentY, p);
                             }
-                            canvas.drawText(String.valueOf(mistakes), 100, 50, p);
-                            canvas.drawText(String.valueOf(points), 50, 50, p);
+                            canvas.drawText("Ошибки: " + mistakes + "/3", 50, 50, p);
+                            canvas.drawText("Очки: " + points + "/10", 50, 105, p);
                             currentX += xSpeed;
                             currentY += ySpeed;
                         }
@@ -163,3 +163,4 @@ public class CatcherSurface extends SurfaceView implements SurfaceHolder.Callbac
         }
     }
 }
+//

@@ -50,7 +50,7 @@ public class GMapActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //
             }
         };
         gmapDataBase.addValueEventListener(vevent);

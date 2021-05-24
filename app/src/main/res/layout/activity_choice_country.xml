@@ -48,10 +48,5 @@
         android:background="@color/money_color"
         android:layout_margin="5sp"
         android:id="@+id/choice5"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="good morning"
-        android:layout_margin="5sp"
-        android:id="@+id/good"/>
+
 </LinearLayout>

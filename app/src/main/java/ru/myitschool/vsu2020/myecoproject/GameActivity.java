@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -69,6 +70,48 @@ public class GameActivity extends AppCompatActivity {
                         wp.getWorld().getCountryCount(USA), wp.getWorld().getCountryCount(CANADA),
                         wp.getWorld().getCountryCount(BRAZIL), wp.getWorld().getCountryCount(MEXICO),
                         wp.getWorld().getCountryCount(COLOMBIA)};
+                //probe
+                dbManager.openDb();
+                ArrayList<String> datesRUS = dbManager.getFromDb().get(SAVED_RUSSIA);
+                ArrayList<String> datesCHI = dbManager.getFromDb().get(SAVED_CHINA);
+                ArrayList<String> datesFRA = dbManager.getFromDb().get(SAVED_FRANCE);
+                ArrayList<String> datesITA = dbManager.getFromDb().get(SAVED_ITALY);
+                ArrayList<String> datesENG = dbManager.getFromDb().get(SAVED_ENGLAND);
+                ArrayList<String> datesUSA = dbManager.getFromDb().get(SAVED_USA);
+                ArrayList<String> datesCAN = dbManager.getFromDb().get(SAVED_CANADA);
+                ArrayList<String> datesBRA = dbManager.getFromDb().get(SAVED_BRAZIL);
+                ArrayList<String> datesMEX = dbManager.getFromDb().get(SAVED_MEXICO);
+                ArrayList<String> datesCOL = dbManager.getFromDb().get(SAVED_COLOMBIA);
+                assert datesRUS != null;
+                datesRUS.remove(0);
+                assert datesCHI != null;
+                datesCHI.remove(0);
+                assert datesFRA != null;
+                datesFRA.remove(0);
+                assert datesITA != null;
+                datesITA.remove(0);
+                assert datesENG != null;
+                datesENG.remove(0);
+                assert datesUSA != null;
+                datesUSA.remove(0);
+                assert datesCAN != null;
+                datesCAN.remove(0);
+                assert datesBRA != null;
+                datesBRA.remove(0);
+                assert datesMEX != null;
+                datesMEX.remove(0);
+                assert datesCOL != null;
+                datesCOL.remove(0);
+                iprof.putExtra(SAVED_RUSSIA, datesRUS.toArray(new String[0]));
+                iprof.putExtra(SAVED_CHINA, datesCHI.toArray(new String[0]));
+                iprof.putExtra(SAVED_FRANCE, datesFRA.toArray(new String[0]));
+                iprof.putExtra(SAVED_ITALY, datesITA.toArray(new String[0]));
+                iprof.putExtra(SAVED_ENGLAND, datesENG.toArray(new String[0]));
+                iprof.putExtra(SAVED_USA, datesUSA.toArray(new String[0]));
+                iprof.putExtra(SAVED_CANADA, datesCAN.toArray(new String[0]));
+                iprof.putExtra(SAVED_BRAZIL, datesBRA.toArray(new String[0]));
+                iprof.putExtra(SAVED_MEXICO, datesMEX.toArray(new String[0]));
+                iprof.putExtra(SAVED_COLOMBIA, datesCOL.toArray(new String[0]));
                 iprof.putExtra("LEVEL_TO_PROF", wp.getWorld().getLevel());
                 iprof.putExtra("COINS", wp.getWorld().getMoney());
                 iprof.putExtra("COUNTRIESARRAY", countries);
@@ -112,8 +155,6 @@ public class GameActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case COUNTRY_ACTIVITY:
-                /*проверить на страну*/
-                 //тут был if в maybemaybe
                 try {
                     assert data != null;
                     int cost = data.getIntExtra("COST", 0);
@@ -314,7 +355,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void loadData(){
         sharedPreferences = getPreferences(MODE_PRIVATE);
-        w.setMoney(sharedPreferences.getInt(SAVED_COINS, 1000000000));
+        w.setMoney(sharedPreferences.getInt(SAVED_COINS, 0));
         w.setK(sharedPreferences.getInt(SAVED_K, 1000));
         w.setLevel(sharedPreferences.getInt(SAVED_LEVEL, 1));
         w.setCeff_money(sharedPreferences.getInt(SAVED_CEFF, 1));
