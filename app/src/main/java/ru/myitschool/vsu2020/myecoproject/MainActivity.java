@@ -17,18 +17,18 @@ public class MainActivity extends AppCompatActivity {
         ImageButton map_btn = findViewById(R.id.map_btn);
         ImageButton game_btn = findViewById(R.id.game_btn);
         ImageButton profile_btn = findViewById(R.id.profile_btn);
-        Intent igmap = new Intent(MainActivity.this, GMapActivity.class);
-        Intent igame = new Intent(MainActivity.this, GameActivity.class);
-        Intent iprofile = new Intent(MainActivity.this, ProfileActivity.class);
         @SuppressLint("NonConstantResourceId") View.OnClickListener onclck = v -> {
             switch(v.getId()){
                 case R.id.map_btn:
+                    Intent igmap = new Intent(MainActivity.this, GMapActivity.class);
                     startActivity(igmap);
                     break;
                 case R.id.game_btn:
+                    Intent igame = new Intent(MainActivity.this, GameActivity.class);
                     startActivity(igame);
                     break;
                 case R.id.profile_btn:
+                    Intent iprofile = new Intent(MainActivity.this, ProfileActivity.class);
                     startActivity(iprofile);
                     break;
             }
